@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+    <h1>Try this cool form!</h1>
+
+    <form th:action="@{/saveEntity}" th:object="${myObject}" method="post">
+        <table>
+            <tr>
+                <td><label>ID</label></td>
+                <td><input type="number" th:field="*{id}"
+                           th:style="${#fields.hasErrors('id') ? 'border: 3px solid red' : ''}"/></td>
+            </tr>
+            <tr th:each="err : ${#fields.errors('id')}" th:text="${err}" />
+            <tr>
+                <td><label>Value</label></td>
+                <td><input type="text" th:field="*{value}"
+                           th:style="${#fields.hasErrors('value') ? 'border: 3px solid red' : ''}"/></td>
+            </tr>
+            <tr th:each="err : ${#fields.errors('value')}" th:text="${err}" />
+            <tr>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
